@@ -59,6 +59,3 @@ def generate_freemind(md_text, output_file="freemind-output.mm"):
         print(f"✅ The freemind mind map has been successfully generated: {output_file}")
     except IOError:
         print(f"❌ Could not save the file: {output_file}")
-
-
-

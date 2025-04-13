@@ -63,7 +63,3 @@ def generate_svg(md_text, output_file="mindmap"):
     # TODO try catch here
     tree_to_svg(tree, output_file)
     print(f"✅ The SVG mind map has been successfully generated: {output_file}.svg")
-
-
-
-

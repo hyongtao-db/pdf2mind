@@ -1,4 +1,4 @@
-![图片描述](misc/pdf2mind.png)
+![picture describe](misc/pdf2mind.png)
 
 | [中文](README.CN.md) | [English](README.md) |
 
