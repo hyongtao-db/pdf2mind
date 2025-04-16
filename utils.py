@@ -15,5 +15,14 @@ def model_selector(args) -> BaseLLM:
         # TODO: should not happen, check error and log out
         pass
 
+def format_selector(args) -> int:
+    if args.only_freemind:
+        return 1
+    elif args.only_xmind:
+        return 2
+    elif args.only_svg:
+        return 3
+    return 0
+
 def wrap_text(text, width=30):
     return '\n'.join([text[i:i+width] for i in range(0, len(text), width)])
