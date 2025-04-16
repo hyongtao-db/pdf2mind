@@ -25,6 +25,9 @@ def cmd_parser():
     group.add_argument("--use-qwen", action="store_true", help="Use Qwen model")
     group.add_argument("--use-openai", action="store_true", help="Use OpenAI model")
 
+    parser.add_argument("--chunk_size", help="chunk size of PDF (optional, default 30000)")
+    parser.add_argument("--overlap_size", help="overlap size of PDF (optional, default 1000)")
+
     args = parser.parse_args()
 
     pdf_file = args.pdf

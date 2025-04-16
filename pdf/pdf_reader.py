@@ -3,7 +3,7 @@ import fitz  # pymupdf
 class PdfProcess():
 
     # TODO, make chunk_size and overlap adjustable
-    def extract_pdf_chunks(filepath, chunk_size=30000, overlap=200):
+    def extract_pdf_chunks(filepath, chunk_size=30000, overlap_size=1000):
         # open pdf file
         doc = fitz.open(filepath)
         
@@ -22,7 +22,7 @@ class PdfProcess():
             chunk = full_text[start:end]
             chunks.append(chunk)
             # Update the starting position, taking overlapping into account
-            start += chunk_size - overlap
+            start += chunk_size - overlap_size
 
         return chunks
 
