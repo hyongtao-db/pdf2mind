@@ -5,15 +5,18 @@ from llm.qwen_llm import QwenLLM
 from llm.openai_llm import OpenaiLLM
 
 def model_selector(args) -> BaseLLM:
-    if args.use_doubao:
-        return DoubaoLLM(args.model, args.language)
-    elif args.use_qwen:
-        return QwenLLM(args.model, args.language)
-    elif args.use_openai:
-        return OpenaiLLM(args.model, args.language)
+    # set default
+    max_level = getattr(args, 'max_level', 4)
+    temperature = getattr(args, 'temperature', 0.7)
+
+    if getattr(args, 'use_doubao', False):
+        return DoubaoLLM(args.model, args.language, max_level, temperature)
+    elif getattr(args, 'use_qwen', False):
+        return QwenLLM(args.model, args.language, max_level, temperature)
+    elif getattr(args, 'use_openai', False):
+        return OpenaiLLM(args.model, args.language, max_level, temperature)
     else:
-        # TODO: should not happen, check error and log out
-        pass
+        raise ValueError("Please at least set one of --use-doubao、--use-qwen or --use-openai")
 
 def format_selector(args) -> int:
     if args.only_freemind:
