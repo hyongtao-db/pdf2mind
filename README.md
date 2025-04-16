@@ -84,18 +84,19 @@ After successful execution, mind maps in all three supported formats will be gen
 # TODO List
 
 - **Highest Priority**
-  * Implement asynchronous I/O
-  * Design a more comprehensive class structure
-  * Add logging functionality
-  * Optimize configuration parameters, including: model temperature, PDF chunk/overlap length, maximum depth of mind map, etc.
+  * [ ] Implement asynchronous I/O
+  * [ ] Design a more comprehensive class structure
+  * [ ] Add logging functionality
+  * ✅ Add .gitignore
+  * ✅ Optimize configuration parameters, including: model temperature, PDF chunk/overlap length, maximum depth of mind map, etc.
 
 - **Lower Priority**
-  * Switch to `poetry` for dependency management
-  * Add Docker support
-  * Provide a Flask-based frontend API service
-  * Add unit tests using `pytest`
-  * Add GitHub workflow automation
-  * Support more models and output formats
+  * [ ] Switch to `poetry` for dependency management
+  * [ ] Add Docker support
+  * [ ] Provide a Flask-based frontend API service
+  * [ ] Add unit tests using `pytest`
+  * [ ] Add GitHub workflow automation
+  * [ ] Support more models and output formats
 
 There’s so much more I’d love to implement. Once these tasks are completed, I plan to revisit foundational knowledge on large language models and Python project best practices.
 

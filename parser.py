@@ -7,9 +7,9 @@ def cmd_parser():
     parser = argparse.ArgumentParser(description="Command-line parser: PDF filename + Model selection")
 
     ### required qrguments
-    parser.add_argument("--pdf", required=True, help="PDF filename")
-    parser.add_argument("--model", required=True, help="model name")
-    parser.add_argument("--language", required=True, help="Target language (e.g., 'English', 'Chinese', 'France', etc.)")
+    parser.add_argument("--pdf", type=str, required=True, help="PDF filename")
+    parser.add_argument("--model", type=str, required=True, help="model name")
+    parser.add_argument("--language", type=str, required=True, help="Target language (e.g., 'English', 'Chinese', 'France', etc.)")
     # parser.add_argument("--key", help="LLM API Key (can also be provided via environment variable LLM_API_KEY)")
 
     # mutually exclusive group for model selection
@@ -19,8 +19,10 @@ def cmd_parser():
     llm_group.add_argument("--use-openai", action="store_true", help="Use OpenAI model")
 
     ### optional arguments
-    parser.add_argument("--chunk-size", help="chunk size of PDF (optional, default 30000)")
-    parser.add_argument("--overlap-size", help="overlap size of PDF (optional, default 1000)")
+    parser.add_argument("--chunk-size", type=int, help="chunk size of PDF (optional, default 30000)")
+    parser.add_argument("--overlap-size", type=int, help="overlap size of PDF (optional, default 1000)")
+    parser.add_argument("--max-level", type=int, default=4, help="maximum level for mind maps (optional, default: 4)")
+    parser.add_argument("--temperature", type=float, default=0.7, help="LLM temperature (optional, default: 0.7)")
 
     # mutually exclusive group for output format selection
     format_group = parser.add_mutually_exclusive_group()

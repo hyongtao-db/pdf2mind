@@ -72,18 +72,18 @@ $ python main.py --pdf testdata/GreenAI-2page.pdf --language Chinese --use-douba
 # TODO清单
 
 - **最高优先级别**
-    * 完成async模式的IO
-    * 更完善的类设计
-    * 增加logging
-    * 增加gitignore
-    * 优化配置参数，包括：模型温度，pdf分片/重叠长度，思维导图最大深度，等
+    * [ ] 完成async模式的IO
+    * [ ] 更完善的类设计
+    * [ ] 增加logging
+    * ✅ 增加gitignore
+    * ✅ 优化配置参数，包括：模型温度，pdf分片/重叠长度，思维导图最大深度，等
 - **低优先级**
-    * 改用poetry管理依赖
-    * Docker部署
-    * Flask提供接口服务到前端
-    * 增加pytest
-    * 增加github workflow
-    * 更多的模型和格式支持
+    * [ ] 改用poetry管理依赖
+    * [ ] Docker部署
+    * [ ] Flask提供接口服务到前端
+    * [ ] 增加pytest
+    * [ ] 增加github workflow
+    * [ ] 更多的模型和格式支持
 
 太多想做的事儿了，做完这些就能把大模型和python项目的知识顺一遍了。
 

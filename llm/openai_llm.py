@@ -6,15 +6,16 @@ from openai import OpenAI
 
 class OpenaiLLM(BaseLLM):
 
-    def __init__(self, model_name: str, language: str):
+    def __init__(self, model_name: str, language: str, max_level: int, temperature: float):
         self.client = OpenAI(
             api_key = os.environ.get("OPENAI_API_KEY"),
             base_url = "https://api.openai.com/v1",
         )
         self.model_name = model_name,
         self.chat_history = [{"role": "system", "content": BEGIN_SYSTEM_PROMPT}]
-        self.max_level = 5
+        self.max_level = max_level
         self.language = language
+        self.temperature = temperature
 
     def loop_pdf_input(self, pdf_result: list):
         # TODO async work with PdfProcess.feed_into_llm()
@@ -26,7 +27,7 @@ class OpenaiLLM(BaseLLM):
             response = self.client.chat.completions.create(
                 model=self.model_name,
                 messages=self.chat_history,
-                temperature=0.5
+                temperature=self.temperature
             )
 
             assistant_reply = response.choices[0].message.content
@@ -42,7 +43,7 @@ class OpenaiLLM(BaseLLM):
         final_response = self.client.chat.completions.create(
             model=self.model_name,
             messages=self.chat_history,
-            temperature=0.7
+            temperature=self.temperature
         )
         
         return final_response.choices[0].message.content
