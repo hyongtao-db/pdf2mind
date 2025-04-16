@@ -2,38 +2,37 @@ import argparse
 import os
 import sys
 
-import argparse
-import os
-import sys
-
-import argparse
-import os
-import sys
-
 # TODO: add pytest for cmd check
 def cmd_parser():
-    parser = argparse.ArgumentParser(description="Command-line parser: PDF filename + LLM API Key + Model selection")
+    parser = argparse.ArgumentParser(description="Command-line parser: PDF filename + Model selection")
 
+    ### required qrguments
     parser.add_argument("--pdf", required=True, help="PDF filename")
-    parser.add_argument("--model", required=True, help="model name)")
+    parser.add_argument("--model", required=True, help="model name")
     parser.add_argument("--language", required=True, help="Target language (e.g., 'English', 'Chinese', 'France', etc.)")
     # parser.add_argument("--key", help="LLM API Key (can also be provided via environment variable LLM_API_KEY)")
 
-    # Mutually exclusive group for model selection
-    group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--use-doubao", action="store_true", help="Use Doubao model")
-    group.add_argument("--use-qwen", action="store_true", help="Use Qwen model")
-    group.add_argument("--use-openai", action="store_true", help="Use OpenAI model")
+    # mutually exclusive group for model selection
+    llm_group = parser.add_mutually_exclusive_group(required=True)
+    llm_group.add_argument("--use-doubao", action="store_true", help="Use Doubao model")
+    llm_group.add_argument("--use-qwen", action="store_true", help="Use Qwen model")
+    llm_group.add_argument("--use-openai", action="store_true", help="Use OpenAI model")
 
-    parser.add_argument("--chunk_size", help="chunk size of PDF (optional, default 30000)")
-    parser.add_argument("--overlap_size", help="overlap size of PDF (optional, default 1000)")
+    ### optional arguments
+    parser.add_argument("--chunk-size", help="chunk size of PDF (optional, default 30000)")
+    parser.add_argument("--overlap-size", help="overlap size of PDF (optional, default 1000)")
+
+    # mutually exclusive group for output format selection
+    format_group = parser.add_mutually_exclusive_group()
+    format_group.add_argument("--only-freemind", action="store_true", help="Only generate FreeMind (.mm) format")
+    format_group.add_argument("--only-xmind", action="store_true", help="Only generate XMind (.xmind) format")
+    format_group.add_argument("--only-svg", action="store_true", help="Only generate SVG (.svg) format")
 
     args = parser.parse_args()
 
     pdf_file = args.pdf
     model = args.model
     language = args.language
-
 
     # Determine selected model
     if args.use_doubao:

@@ -20,6 +20,31 @@ pip install -r requirement.txt -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/
 其它依赖：
 - [graphviz]("https://graphviz.org/")
 
+# 帮助
+```
+$ python pdf2mind.py -h
+usage: pdf2mind.py [-h] --pdf PDF --model MODEL --language LANGUAGE (--use-doubao | --use-qwen | --use-openai) [--chunk_size CHUNK_SIZE]
+                   [--overlap_size OVERLAP_SIZE] [--only-freemind | --only-xmind | --only-svg]
+
+Command-line parser: PDF filename + Model selection
+
+options:
+  -h, --help            show this help message and exit
+  --pdf PDF             PDF filename
+  --model MODEL         model name
+  --language LANGUAGE   Target language (e.g., 'English', 'Chinese', 'France', etc.)
+  --use-doubao          Use Doubao model
+  --use-qwen            Use Qwen model
+  --use-openai          Use OpenAI model
+  --chunk_size CHUNK_SIZE
+                        chunk size of PDF (optional, default 30000)
+  --overlap_size OVERLAP_SIZE
+                        overlap size of PDF (optional, default 1000)
+  --only-freemind       Only generate FreeMind (.mm) format
+  --only-xmind          Only generate XMind (.xmind) format
+  --only-svg            Only generate SVG (.svg) format
+
+```
 # 支持度
 ## 支持的模型
 
