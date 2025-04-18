@@ -1,4 +1,8 @@
-from abc import ABC, abstractmethod
+import os
+import time
+from abc import ABC
+
+from openai import OpenAI
 
 
 # BEGIN_SYSTEM_PROMPT_CN = """
@@ -20,10 +24,45 @@ GET_MD_PROMPT = "Please generate a summary report in Markdown format based on al
 
 class BaseLLM(ABC):
 
-    @abstractmethod
-    def loop_pdf_input(self):
-        pass
+    def __init__(self, model_name: str, language: str, max_level: int, temperature: float,
+                 api_key_env: str, base_url: str):
+        self.client = OpenAI(
+            api_key=os.environ.get(api_key_env),
+            base_url=base_url
+        )
+        self.model_name = model_name
+        self.chat_history = [{"role": "system", "content": BEGIN_SYSTEM_PROMPT}]
+        self.max_level = max_level
+        self.language = language
+        self.temperature = temperature
 
-    @abstractmethod
+    def loop_pdf_input(self, pdf_result: list):
+        # TODO async work with PdfProcess.feed_into_llm()
+        for idx, text in enumerate(pdf_result):
+            user_msg = f"The following is the {idx + 1}-th piece of material. Please make a summary, which is used to prepare for the final Markdown generation:\n{text}"
+
+            self.chat_history.append({"role": "user", "content": user_msg})
+
+            response = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=self.chat_history,
+                temperature=self.temperature
+            )
+
+            assistant_reply = response.choices[0].message.content
+            self.chat_history.pop()
+            self.chat_history.append({"role": "assistant", "content": assistant_reply})
+            
+            print(f"✅ The {idx+1}-th piece of material has been sent and the summary has been recorded.\n")
+            time.sleep(1)
+
     def get_md_result(self):
-        pass
+        self.chat_history.append({"role": "user", "content": GET_MD_PROMPT + f"The generated Markdown document will be in {self.language} and have a maximum of {self.max_level} hierarchical levels."})
+
+        final_response = self.client.chat.completions.create(
+            model=self.model_name,
+            messages=self.chat_history,
+            temperature=self.temperature
+        )
+        
+        return final_response.choices[0].message.content
