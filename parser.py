@@ -27,7 +27,7 @@ def cmd_parser():
     # mutually exclusive group for output format selection
     format_group = parser.add_mutually_exclusive_group()
     format_group.add_argument("--only-freemind", action="store_true", help="Only generate FreeMind (.mm) format")
-    format_group.add_argument("--only-xmind", action="store_true", help="Only generate XMind (.xmind) format")
+    format_group.add_argument("--only-xmind", action="store_true", help="Only generate XMind (.md) format")
     format_group.add_argument("--only-svg", action="store_true", help="Only generate SVG (.svg) format")
 
     args = parser.parse_args()

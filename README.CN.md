@@ -88,5 +88,5 @@ $ python main.py --pdf testdata/GreenAI-2page.pdf --language Chinese --use-douba
 太多想做的事儿了，做完这些就能把大模型和python项目的知识顺一遍了。
 
 # 致谢
-- 我从[yihong0618]("https://github.com/yihong0618/")的[xiaogpt]("https://github.com/yihong0618/xiaogpt")和[bilingual_book_maker](https://github.com/yihong0618/bilingual_book_maker)学到了很多知识。
+- 我从[yihong0618](https://github.com/yihong0618/)的[xiaogpt](https://github.com/yihong0618/xiaogpt)和[bilingual_book_maker](https://github.com/yihong0618/bilingual_book_maker)学到了很多知识。
 - [ChatPaper2Xmind](https://github.com/MasterYip/ChatPaper2Xmind)这个项目对我很有帮助。
