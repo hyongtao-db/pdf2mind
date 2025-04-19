@@ -99,6 +99,32 @@ $ python main.py --pdf testdata/GreenAI-2page.pdf --language Chinese --use-douba
 
 After successful execution, mind maps in all three supported formats will be generated in the source directory.
 
+## Docker
+
+```bash
+$ docker build -t hyongtao-db/pdf2mind:0.0.1 .
+$ docker run  \
+  hyongtao-db/pdf2mind:0.0.1 \
+  -h
+usage: pdf2mind.py [-h] --pdf PDF --model MODEL --language LANGUAGE
+                   (--use-doubao | --use-qwen | --use-openai)
+                   [--chunk-size CHUNK_SIZE] [--overlap-size OVERLAP_SIZE]
+                   [--max-level MAX_LEVEL] [--temperature TEMPERATURE]
+                   [--only-freemind | --only-xmind | --only-svg]
+
+Command-line parser: PDF filename + Model selection
+
+$ docker run \
+  -e ARK_API_KEY=$ARK_API_KEY \
+  -v $(pwd)/:/data/ \
+  hyongtao-db/pdf2mind:0.0.1 \
+  --pdf /data/testdata/GreenAI-2Page.pdf \
+  --language Chinese \
+  --use-doubao \
+  --model doubao-1-5-lite-32k-250115
+```
+Please pay attention to the correspondence of Docker file mounts.
+
 # TODO List
 
 - **Highest Priority**
@@ -110,7 +136,7 @@ After successful execution, mind maps in all three supported formats will be gen
 
 - **Lower Priority**
   * [ ] Switch to `poetry` for dependency management
-  * [ ] Add Docker support
+  * ✅ Add Docker support
   * [ ] Provide a Flask-based frontend API service
   * [ ] Add unit tests using `pytest`
   * [ ] Add GitHub workflow automation
