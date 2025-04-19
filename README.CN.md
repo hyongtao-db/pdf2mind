@@ -122,7 +122,7 @@ $ docker run \
     * ✅ 优化配置参数，包括：模型温度，pdf分片/重叠长度，思维导图最大深度，等
 - **低优先级**
     * [ ] 改用poetry管理依赖
-    * [ ] Docker部署
+    * ✅ Docker部署
     * [ ] Flask提供接口服务到前端
     * [ ] 增加pytest
     * [ ] 增加github workflow
