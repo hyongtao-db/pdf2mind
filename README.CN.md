@@ -7,7 +7,7 @@
 pdf2mind是一款由大语言模型驱动的智能工具，只需一键操作，即可将长篇PDF文档自动转换为结构清晰的思维导图。可以支持[XMind]("https://xmind.cn/")，[FreeMind]("https://freemind.sourceforge.io/wiki/index.php/Main_Page")和直接**SVG**格式输出。
 
 # 演示
-- [视频演示](misc/demo-show-vedio.mp4)
+- [视频演示](https://www.youtube.com/watch?v=3JGv0MA77Qs)
 - [功能展示](testdata/GreenAI-13Page.pdf_20250413151347.svg)
 # 环境依赖
 支持在Windows，Linux下运行。尚未尝试过MacOS。
@@ -18,7 +18,7 @@ conda activate pdf2mind
 pip install -r requirement.txt -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 ```
 其它依赖：
-- [graphviz]("https://graphviz.org/")
+- [Graphviz](https://graphviz.org/)
 
 # 帮助
 ```
@@ -73,7 +73,7 @@ $ python main.py --pdf testdata/GreenAI-2page.pdf --language Chinese --use-douba
 
 - **最高优先级别**
     * [ ] 完成async模式的IO
-    * [ ] 更完善的类设计
+    * ✅ 更完善的类设计
     * [ ] 增加logging
     * ✅ 增加gitignore
     * ✅ 优化配置参数，包括：模型温度，pdf分片/重叠长度，思维导图最大深度，等

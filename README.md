@@ -8,7 +8,7 @@
 
 # Demo Show
 
-- [Watch the Demo Video](misc/demo-show-vedio.mp4)
+- [Watch the Demo Video](https://www.youtube.com/watch?v=3JGv0MA77Qs)
 - [Result Show](testdata/GreenAI-13Page.pdf_20250413151347.svg)
 
 # Environment Dependencies
