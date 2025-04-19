@@ -15,10 +15,22 @@ pdf2mind是一款由大语言模型驱动的智能工具，只需一键操作，
 ``` bash
 conda create --name pdf2mind python=3.12
 conda activate pdf2mind
-pip install -r requirement.txt -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+pip install -r requirements.txt -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 ```
 其它依赖：
 - [Graphviz](https://graphviz.org/)
+
+对于linux操作系统:
+``` bash
+$ apt install graphviz
+```
+对于Mac操作系统:
+``` bash
+$ brew install graphviz
+```
+对于Windows操作系统
+
+Please refer to https://graphviz.org/download/
 
 # 帮助
 ```

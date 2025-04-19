@@ -20,12 +20,24 @@ To set up the environment, run the following commands:
 ```bash
 conda create --name pdf2mind python=3.12
 conda activate pdf2mind
-pip install -r requirement.txt -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+pip install -r requirements.txt -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 ```
 
 Other required dependency:
 
 - [Graphviz](https://graphviz.org/)
+
+For linux OS system:
+``` bash
+$ apt install graphviz
+```
+For Mac OS system:
+``` bash
+$ brew install graphviz
+```
+For Windows OS system
+
+Please refer to https://graphviz.org/download/
 
 # Help
 ```
