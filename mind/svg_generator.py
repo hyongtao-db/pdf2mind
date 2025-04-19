@@ -1,5 +1,5 @@
 from graphviz import Digraph
-from utils import wrap_text
+from utils.utils import wrap_text
 
 def parse_markdown(md_text):
     lines = md_text.strip().splitlines()

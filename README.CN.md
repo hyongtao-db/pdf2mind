@@ -15,10 +15,22 @@ pdf2mind是一款由大语言模型驱动的智能工具，只需一键操作，
 ``` bash
 conda create --name pdf2mind python=3.12
 conda activate pdf2mind
-pip install -r requirement.txt -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+pip install -r requirements.txt -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 ```
 其它依赖：
 - [Graphviz](https://graphviz.org/)
+
+对于linux操作系统:
+``` bash
+$ apt install graphviz
+```
+对于Mac操作系统:
+``` bash
+$ brew install graphviz
+```
+对于Windows操作系统
+
+Please refer to https://graphviz.org/download/
 
 # 帮助
 ```
@@ -74,6 +86,32 @@ $ python main.py --pdf testdata/GreenAI-2page.pdf --language Chinese --use-douba
 ```
 执行成功后可以在源目录下生成3种格式的思维导图。
 
+## Docker
+
+```bash
+$ docker build -t hyongtao-db/pdf2mind:0.0.1 .
+$ docker run  \
+  hyongtao-db/pdf2mind:0.0.1 \
+  -h
+usage: pdf2mind.py [-h] --pdf PDF --model MODEL --language LANGUAGE
+                   (--use-doubao | --use-qwen | --use-openai)
+                   [--chunk-size CHUNK_SIZE] [--overlap-size OVERLAP_SIZE]
+                   [--max-level MAX_LEVEL] [--temperature TEMPERATURE]
+                   [--only-freemind | --only-xmind | --only-svg]
+
+Command-line parser: PDF filename + Model selection
+
+$ docker run \
+  -e ARK_API_KEY=$ARK_API_KEY \
+  -v $(pwd)/:/data/ \
+  hyongtao-db/pdf2mind:0.0.1 \
+  --pdf /data/testdata/GreenAI-2Page.pdf \
+  --language Chinese \
+  --use-doubao \
+  --model doubao-1-5-lite-32k-250115
+```
+请关注docker文件挂载的对应。
+
 # TODO清单
 
 - **最高优先级别**
@@ -84,7 +122,7 @@ $ python main.py --pdf testdata/GreenAI-2page.pdf --language Chinese --use-douba
     * ✅ 优化配置参数，包括：模型温度，pdf分片/重叠长度，思维导图最大深度，等
 - **低优先级**
     * [ ] 改用poetry管理依赖
-    * [ ] Docker部署
+    * ✅ Docker部署
     * [ ] Flask提供接口服务到前端
     * [ ] 增加pytest
     * [ ] 增加github workflow
