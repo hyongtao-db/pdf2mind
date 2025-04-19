@@ -23,8 +23,9 @@ pip install -r requirement.txt -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/
 # 帮助
 ```
 $ python pdf2mind.py -h
-usage: pdf2mind.py [-h] --pdf PDF --model MODEL --language LANGUAGE (--use-doubao | --use-qwen | --use-openai) [--chunk_size CHUNK_SIZE]
-                   [--overlap_size OVERLAP_SIZE] [--only-freemind | --only-xmind | --only-svg]
+usage: pdf2mind.py [-h] --pdf PDF --model MODEL --language LANGUAGE (--use-doubao | --use-qwen | --use-openai) [--chunk-size CHUNK_SIZE]
+                   [--overlap-size OVERLAP_SIZE] [--max-level MAX_LEVEL] [--temperature TEMPERATURE]
+                   [--only-freemind | --only-xmind | --only-svg]
 
 Command-line parser: PDF filename + Model selection
 
@@ -36,12 +37,16 @@ options:
   --use-doubao          Use Doubao model
   --use-qwen            Use Qwen model
   --use-openai          Use OpenAI model
-  --chunk_size CHUNK_SIZE
+  --chunk-size CHUNK_SIZE
                         chunk size of PDF (optional, default 30000)
-  --overlap_size OVERLAP_SIZE
+  --overlap-size OVERLAP_SIZE
                         overlap size of PDF (optional, default 1000)
+  --max-level MAX_LEVEL
+                        maximum level for mind maps (optional, default: 4)
+  --temperature TEMPERATURE
+                        LLM temperature (optional, default: 0.7)
   --only-freemind       Only generate FreeMind (.mm) format
-  --only-xmind          Only generate XMind (.xmind) format
+  --only-xmind          Only generate XMind (.md) format
   --only-svg            Only generate SVG (.svg) format
 
 ```
