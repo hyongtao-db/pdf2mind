@@ -1,9 +1,8 @@
+import asyncio
 import os
-import time
 from abc import ABC
 
 from openai import OpenAI
-
 
 # BEGIN_SYSTEM_PROMPT_CN = """
 # 你是一个擅长写作的总结专家，请在我给出全部资料后，
@@ -21,12 +20,6 @@ I will send the text in segments one after another. You don't need to reply unti
 """
 
 GET_MD_PROMPT = "Please generate a summary report in Markdown format based on all the above historical information. Try to keep the upper-level headings short."
-
-from abc import ABC
-import os
-import time
-import asyncio
-from openai import OpenAI
 
 class BaseLLM(ABC):
     def __init__(self, model_name: str, language: str, max_level: int, temperature: float,
