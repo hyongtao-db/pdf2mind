@@ -28,7 +28,7 @@ $ apt install graphviz
 ``` bash
 $ brew install graphviz
 ```
-对于Windows操作系统
+对于Windows操作系统:
 
 Please refer to https://graphviz.org/download/
 
@@ -82,7 +82,7 @@ options:
 以使用Doubao大模型为例子：
 ```
 $ setx ARK_API_KEY ***key*** or export ARK_API_KEY=***key***
-$ python main.py --pdf testdata/GreenAI-2page.pdf --language Chinese --use-doubao --model doubao-1-5-lite-32k-250115
+$ python pdf2mind.py --pdf testdata/GreenAI-2page.pdf --language Chinese --use-doubao --model doubao-1-5-lite-32k-250115
 ```
 执行成功后可以在源目录下生成3种格式的思维导图。
 
@@ -115,7 +115,7 @@ $ docker run \
 # TODO清单
 
 - **最高优先级别**
-    * [ ] 完成async模式的IO
+    * ✅ 完成async模式的IO
     * ✅ 更完善的类设计
     * [ ] 增加logging
     * ✅ 增加gitignore

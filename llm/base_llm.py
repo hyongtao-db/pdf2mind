@@ -1,9 +1,8 @@
+import asyncio
 import os
-import time
 from abc import ABC
 
 from openai import OpenAI
-
 
 # BEGIN_SYSTEM_PROMPT_CN = """
 # 你是一个擅长写作的总结专家，请在我给出全部资料后，
@@ -23,7 +22,6 @@ I will send the text in segments one after another. You don't need to reply unti
 GET_MD_PROMPT = "Please generate a summary report in Markdown format based on all the above historical information. Try to keep the upper-level headings short."
 
 class BaseLLM(ABC):
-
     def __init__(self, model_name: str, language: str, max_level: int, temperature: float,
                  api_key_env: str, base_url: str):
         self.client = OpenAI(
@@ -36,25 +34,24 @@ class BaseLLM(ABC):
         self.language = language
         self.temperature = temperature
 
-    def loop_pdf_input(self, pdf_result: list):
-        # TODO async work with PdfProcess.feed_into_llm()
-        for idx, text in enumerate(pdf_result):
-            user_msg = f"The following is the {idx + 1}-th piece of material. Please make a summary, which is used to prepare for the final Markdown generation:\n{text}"
+    async def process_chunk(self, idx, text):
+        user_msg = f"The following is the {idx + 1}-th piece of material. Please make a summary, which is used to prepare for the final Markdown generation:\n{text}"
 
-            self.chat_history.append({"role": "user", "content": user_msg})
+        self.chat_history.append({"role": "user", "content": user_msg})
 
-            response = self.client.chat.completions.create(
-                model=self.model_name,
-                messages=self.chat_history,
-                temperature=self.temperature
-            )
+        response = await asyncio.to_thread(
+            self.client.chat.completions.create,
+            model=self.model_name,
+            messages=self.chat_history,
+            temperature=self.temperature
+        )
 
-            assistant_reply = response.choices[0].message.content
-            self.chat_history.pop()
-            self.chat_history.append({"role": "assistant", "content": assistant_reply})
-            
-            print(f"✅ The {idx+1}-th piece of material has been sent and the summary has been recorded.\n")
-            time.sleep(1)
+        assistant_reply = response.choices[0].message.content
+        self.chat_history.pop()
+        self.chat_history.append({"role": "assistant", "content": assistant_reply})
+
+        print(f"✅ The {idx+1}-th piece of material has been sent and the summary has been recorded.\n")
+        await asyncio.sleep(1)
 
     def get_md_result(self):
         self.chat_history.append({"role": "user", "content": GET_MD_PROMPT + f"The generated Markdown document will be in {self.language} and have a maximum of {self.max_level} hierarchical levels."})
@@ -64,5 +61,5 @@ class BaseLLM(ABC):
             messages=self.chat_history,
             temperature=self.temperature
         )
-        
+
         return final_response.choices[0].message.content
