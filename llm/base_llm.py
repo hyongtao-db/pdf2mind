@@ -39,7 +39,6 @@ class BaseLLM(ABC):
 
         self.chat_history.append({"role": "user", "content": user_msg})
 
-        # 异步执行非 async 的 openai 调用
         response = await asyncio.to_thread(
             self.client.chat.completions.create,
             model=self.model_name,
@@ -52,7 +51,7 @@ class BaseLLM(ABC):
         self.chat_history.append({"role": "assistant", "content": assistant_reply})
 
         print(f"✅ The {idx+1}-th piece of material has been sent and the summary has been recorded.\n")
-        await asyncio.sleep(1)  # 节奏控制
+        await asyncio.sleep(1)
 
     def get_md_result(self):
         self.chat_history.append({"role": "user", "content": GET_MD_PROMPT + f"The generated Markdown document will be in {self.language} and have a maximum of {self.max_level} hierarchical levels."})
