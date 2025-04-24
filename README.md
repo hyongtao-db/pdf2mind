@@ -35,7 +35,7 @@ For Mac OS system:
 ``` bash
 $ brew install graphviz
 ```
-For Windows OS system
+For Windows OS system:
 
 Please refer to https://graphviz.org/download/
 
@@ -94,7 +94,7 @@ Here is an example using the **Doubao** large language model:
 ```bash
 $ setx ARK_API_KEY ***key***      # On Windows
 $ export ARK_API_KEY=***key***    # On Linux/macOS
-$ python main.py --pdf testdata/GreenAI-2page.pdf --language Chinese --use-doubao --model doubao-1-5-lite-32k-250115
+$ python pdf2mind.py --pdf testdata/GreenAI-2page.pdf --language Chinese --use-doubao --model doubao-1-5-lite-32k-250115
 ```
 
 After successful execution, mind maps in all three supported formats will be generated in the source directory.
@@ -128,8 +128,8 @@ Please pay attention to the correspondence of Docker file mounts.
 # TODO List
 
 - **Highest Priority**
-  * [ ] Implement asynchronous I/O
-  * [ ] Design a more comprehensive class structure
+  * ✅ Implement asynchronous I/O
+  * ✅ Design a more comprehensive class structure
   * [ ] Add logging functionality
   * ✅ Add .gitignore
   * ✅ Optimize configuration parameters, including: model temperature, PDF chunk/overlap length, maximum depth of mind map, etc.
