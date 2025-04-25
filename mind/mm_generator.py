@@ -1,5 +1,7 @@
 import xml.etree.ElementTree as ET
 
+from utils.log import logger
+
 def parse_markdown(md_text):
     lines = md_text.strip().splitlines()
     tree = []
@@ -56,6 +58,6 @@ def generate_freemind(md_text, output_file="freemind-output.mm"):
     try:
         with open(output_file, 'w', encoding='utf-8') as file:
             tree.write(output_file, encoding="utf-8", xml_declaration=True)
-        print(f"✅ The freemind mind map has been successfully generated: {output_file}")
+        logger.info(f"✅ The freemind mind map has been successfully generated: {output_file}")
     except IOError:
-        print(f"❌ Could not save the file: {output_file}")
+        logger.info(f"❌ Could not save the file: {output_file}")

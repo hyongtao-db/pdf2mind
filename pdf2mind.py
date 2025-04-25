@@ -4,6 +4,7 @@ from pdf.pdf_reader import PdfProcess
 from mind.generator import gen_all_mindmaps
 from utils.utils import model_selector, format_selector
 
+
 async def main():
     args = cmd_parser()
 

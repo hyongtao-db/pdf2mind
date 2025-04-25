@@ -4,6 +4,8 @@ from abc import ABC
 
 from openai import OpenAI
 
+from utils.log import logger
+
 # BEGIN_SYSTEM_PROMPT_CN = """
 # 你是一个擅长写作的总结专家，请在我给出全部资料后，
 # 为我写出一份结构清晰、语言准确、格式为Markdown的总结报告。
@@ -50,7 +52,7 @@ class BaseLLM(ABC):
         self.chat_history.pop()
         self.chat_history.append({"role": "assistant", "content": assistant_reply})
 
-        print(f"✅ The {idx+1}-th piece of material has been sent and the summary has been recorded.\n")
+        logger.info(f"✅ The {idx+1}-th piece of material has been sent and the summary has been recorded.\n")
         await asyncio.sleep(1)
 
     def get_md_result(self):

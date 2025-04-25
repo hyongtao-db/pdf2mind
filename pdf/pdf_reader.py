@@ -1,6 +1,8 @@
 import asyncio
 import fitz  # pymupdf
 
+from utils.log import logger
+
 class PdfProcess():
 
     def __extract_pdf_chunks(self, filepath, chunk_size=30000, overlap_size=1000):
@@ -31,10 +33,10 @@ class PdfProcess():
             kwargs['overlap_size'] = int(overlap_size)
 
         chunks = self.__extract_pdf_chunks(pdf_name, **kwargs)
-        print(f"📄 The PDF has been split into {len(chunks)} parts.")
+        logger.info(f"📄 The PDF has been split into {len(chunks)} parts.")
 
         for idx, chunk in enumerate(chunks):
             await queue.put((idx, chunk))
-            print(f"📤 Put chunk {idx+1} into queue.")
+            logger.info(f"📤 Put chunk {idx+1} into queue.")
 
         await queue.put(None)

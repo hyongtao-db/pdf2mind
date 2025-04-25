@@ -3,14 +3,14 @@ from datetime import datetime
 from mind.md_generator import generate_md
 from mind.mm_generator import generate_freemind
 from mind.svg_generator import generate_svg
-
+from utils.log import logger
 
 def gen_all_mindmaps(markdown_content, file_name, only_what):
-    # print("\n📝 Final generated Markdown content:\n")
-    # print(markdown_content)
+    # logger.info("\n📝 Final generated Markdown content:\n")
+    # logger.info(markdown_content)
     # Generate mind maps in various formats
     current_timestamp = datetime.now().strftime("%Y%m%d%H%M%S") # YYYYMMDDHHMMSS
-    print("\nCurrent timestamp is ", current_timestamp, "\n")
+    logger.info(f"Current timestamp is {current_timestamp}\n")
     output_name = file_name + "_" + str(current_timestamp)
     md_name = output_name + ".md"
     mm_name = output_name + ".mm"
