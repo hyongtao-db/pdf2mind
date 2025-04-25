@@ -2,6 +2,8 @@ import argparse
 import os
 import sys
 
+from utils.log import logger, setup_logger
+
 # TODO: add pytest for cmd check
 def cmd_parser():
     parser = argparse.ArgumentParser(description="Command-line parser: PDF filename + Model selection")
@@ -30,7 +32,13 @@ def cmd_parser():
     format_group.add_argument("--only-xmind", action="store_true", help="Only generate XMind (.md) format")
     format_group.add_argument("--only-svg", action="store_true", help="Only generate SVG (.svg) format")
 
+    # log related
+    parser.add_argument('--debug', action='store_true', help='Enable debug log output')
+
     args = parser.parse_args()
+
+    # setup log
+    setup_logger(debug_mode=args.debug)
 
     pdf_file = args.pdf
     model = args.model
@@ -51,16 +59,14 @@ def cmd_parser():
         vender = "Unknown"
 
     if not llm_key:
-        print("Error: LLM API Key is required. Please provide it via --key argument or set the XXX_API_KEY environment variable.")
+        logger.info("Error: LLM API Key is required. Please provide it via --key argument or set the XXX_API_KEY environment variable.")
         sys.exit(1)
 
-    # Print the parsed results, TODO: use logging rather than print
-    print("\n")
-    print("📄 PDF filename:", pdf_file)
-    # print("🔑 LLM API Key:", llm_key)
-    print("🌍 Target language:", language)
-    print("🧠 Selected vender:", vender)
-    print("🤖 Model name:", model, "\n")
+    logger.info(f"📄 PDF filename: {pdf_file}")
+    # logger.info(f"🔑 LLM API Key: {llm_key}")
+    logger.info(f"🌍 Target language: {language}")
+    logger.info(f"🧠 Selected vender: {vender}")
+    logger.info(f"🤖 Model name: {model}\n")
     
     args = parser.parse_args()
     return args

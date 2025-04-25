@@ -1,5 +1,6 @@
 from graphviz import Digraph
 from utils.utils import wrap_text
+from utils.log import logger
 
 def parse_markdown(md_text):
     lines = md_text.strip().splitlines()
@@ -62,4 +63,4 @@ def generate_svg(md_text, output_file="mindmap"):
     tree = parse_markdown(md_text)
     # TODO try catch here
     tree_to_svg(tree, output_file)
-    print(f"✅ The SVG mind map has been successfully generated: {output_file}.svg")
+    logger.info(f"✅ The SVG mind map has been successfully generated: {output_file}.svg")
