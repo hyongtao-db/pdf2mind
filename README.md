@@ -130,7 +130,7 @@ Please pay attention to the correspondence of Docker file mounts.
 - **Highest Priority**
   * ✅ Implement asynchronous I/O
   * ✅ Design a more comprehensive class structure
-  * [ ] Add logging functionality
+  * ✅ Add logging functionality
   * ✅ Add .gitignore
   * ✅ Optimize configuration parameters, including: model temperature, PDF chunk/overlap length, maximum depth of mind map, etc.
 
