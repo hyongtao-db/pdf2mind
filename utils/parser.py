@@ -58,7 +58,7 @@ def cmd_parser():
         # Should not happen due to required=True
         vender = "Unknown"
 
-    if not llm_key:
+    if not llm_key: # pylint: disable=possibly-used-before-assignment
         logger.info("Error: LLM API Key is required. Please provide it via --key argument or set the XXX_API_KEY environment variable.")
         sys.exit(1)
 
