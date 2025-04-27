@@ -67,6 +67,6 @@ def cmd_parser():
     logger.info(f"🌍 Target language: {language}")
     logger.info(f"🧠 Selected vender: {vender}")
     logger.info(f"🤖 Model name: {model}\n")
-    
+
     args = parser.parse_args()
     return args
