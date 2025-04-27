@@ -7,6 +7,7 @@ disable=
     C0115,  # missing-class-docstring
     C0116,  # missing-function-docstring
     C0301,  # line-too-long
+    E0401,  # import-error
     R0903,  # too-few-public-methods
     R0913,  # too-many-arguments
     R0917,  # too-many-positional-arguments
