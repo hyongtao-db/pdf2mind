@@ -25,7 +25,7 @@ class PdfProcess():
         pdf_name = str(args.pdf)
         chunk_size = getattr(args, 'chunk_size', None)
         overlap_size = getattr(args, 'overlap_size', None)
-        
+
         kwargs = {}
         if chunk_size is not None:
             kwargs['chunk_size'] = int(chunk_size)

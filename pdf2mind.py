@@ -1,7 +1,8 @@
 import asyncio
-from utils.parser import cmd_parser 
+
 from pdf.pdf_reader import PdfProcess
 from mind.generator import gen_all_mindmaps
+from utils.parser import cmd_parser
 from utils.utils import model_selector, format_selector
 
 

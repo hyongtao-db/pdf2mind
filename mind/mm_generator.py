@@ -54,9 +54,9 @@ def generate_freemind(md_text, output_file="freemind-output.mm"):
     for item in tree_data:
         build_freemind_node(root, item)
     tree = ET.ElementTree(root)
-    
+
     try:
-        with open(output_file, 'w', encoding='utf-8') as file:
+        with open(output_file, 'w', encoding='utf-8'):
             tree.write(output_file, encoding="utf-8", xml_declaration=True)
         logger.info(f"✅ The freemind mind map has been successfully generated: {output_file}")
     except IOError:

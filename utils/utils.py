@@ -1,8 +1,7 @@
-
 from llm.base_llm import BaseLLM
 from llm.doubao_llm import DoubaoLLM
-from llm.qwen_llm import QwenLLM
 from llm.openai_llm import OpenaiLLM
+from llm.qwen_llm import QwenLLM
 
 def model_selector(args) -> BaseLLM:
     # set default
@@ -11,19 +10,19 @@ def model_selector(args) -> BaseLLM:
 
     if getattr(args, 'use_doubao', False):
         return DoubaoLLM(args.model, args.language, max_level, temperature)
-    elif getattr(args, 'use_qwen', False):
+    if getattr(args, 'use_qwen', False):
         return QwenLLM(args.model, args.language, max_level, temperature)
-    elif getattr(args, 'use_openai', False):
+    if getattr(args, 'use_openai', False):
         return OpenaiLLM(args.model, args.language, max_level, temperature)
-    else:
-        raise ValueError("Please at least set one of --use-doubao、--use-qwen or --use-openai")
+
+    raise ValueError("Please at least set one of --use-doubao、--use-qwen or --use-openai")
 
 def format_selector(args) -> int:
     if args.only_freemind:
         return 1
-    elif args.only_xmind:
+    if args.only_xmind:
         return 2
-    elif args.only_svg:
+    if args.only_svg:
         return 3
     return 0
 

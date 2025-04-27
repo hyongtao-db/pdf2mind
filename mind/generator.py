@@ -15,7 +15,7 @@ def gen_all_mindmaps(markdown_content, file_name, only_what):
     md_name = output_name + ".md"
     mm_name = output_name + ".mm"
     svg_name = output_name
-    
+
     match only_what:
         case 0:
             generate_md(markdown_content, md_name)
@@ -27,4 +27,3 @@ def gen_all_mindmaps(markdown_content, file_name, only_what):
             generate_freemind(markdown_content, mm_name)
         case 3:
             generate_svg(markdown_content, svg_name)
-

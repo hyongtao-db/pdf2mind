@@ -59,7 +59,7 @@ def tree_to_svg(nodes, output_file="mindmap"):
             dot.edge(node["parent"], node_id)
     dot.render(output_file, view=False)
 
-def generate_svg(md_text, output_file="mindmap"):    
+def generate_svg(md_text, output_file="mindmap"):
     tree = parse_markdown(md_text)
     # TODO try catch here
     tree_to_svg(tree, output_file)
